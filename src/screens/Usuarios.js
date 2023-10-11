@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
+import { Avatar, Card, IconButton, Paragraph } from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import Api from '../services/Api';
 
@@ -18,27 +19,36 @@ export default function Usuarios() {
   console.log(usuarios)
 
   return (
-    <View style={styles.container}>
+    <View style={{ backgroundColor: 'gray'}}>
       <FlatList
         data={usuarios}
-        renderItem={({ item }) => {
-          return (
-            <View style={{ padding: 7 }}>
-              <Text style={{ fontWeight: 'bold', color: '#fff' }}>{item.firstName}</Text>
-              <Text>{item.age}</Text>
-            </View>
-          );
-        }}
+        renderItem={({ item }) => (
+          < Card
+            mode='elevated'
+            style={styles.card}
+          >
+            <Card.Title
+              title={item.firstName + ' ' + item.lastName}
+              titleStyle={{ fontWeight: 'bold' }}
+              subtitle={'Usuário: ' + item.username}
+              left={() => <Avatar.Image size={48} source={{ uri: item.image }} />}
+            />
+            <Card.Content>
+              <Paragraph>{'Telefone: ' + item.phone}</Paragraph>
+              <Paragraph>{'Email: ' + item.email}</Paragraph>
+              <Paragraph>{'Idade: ' + item.age}</Paragraph>
+            </Card.Content>
+          </Card>
+        )}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    backgroundColor: 'red'
+  card: {
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 10
   }
 });

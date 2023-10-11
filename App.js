@@ -1,8 +1,11 @@
+import { PaperProvider } from "react-native-paper";
 import Router from "./src/routes/Router";
 
 export default function App() {
   return (
-    <Router/>
+    <PaperProvider>
+      <Router />
+    </PaperProvider>
   );
 }
 

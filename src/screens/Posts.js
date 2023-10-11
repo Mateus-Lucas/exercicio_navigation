@@ -12,7 +12,7 @@ export default function Posts() {
                 setPosts(response.data.posts);
             })
             .catch(error => {
-                console.log("DEU ERRO NA CHAMADA DE USUÁRIOS: ", error);
+                console.log("DEU ERRO NA CHAMADA DE POSTS: ", error);
             });
     }, []);
 
@@ -24,7 +24,7 @@ export default function Posts() {
                     return (
                         <View style={{ padding: 7 }}>
                             <Text style={{ fontWeight: 'bold', color: '#fff' }}>{item.title}</Text>
-                            <Text>{item.title}</Text>
+                            <Text>{item.body}</Text>
                         </View>
                     );
                 }}
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: 'red'
+        backgroundColor: 'gray'
     }
 })
